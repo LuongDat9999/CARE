@@ -19,8 +19,6 @@ class ner_unit(nn.Module):
         self.ln = nn.LayerNorm(ner_hidden_size)
         self.dropout = nn.Dropout(args.dropout)
 
-
-
     def forward(self, h_ner, h_share, mask):
         length, batch_size, _ = h_ner.size()
 
@@ -162,7 +160,6 @@ class ConvAttention(nn.Module):
         return x, y, fea_map.permute(0, 2, 3, 1).contiguous()
 
 
-
 class CARE(nn.Module):
     def __init__(self, args, input_size, ner2idx, rel2idx):
         super(CARE, self).__init__()
@@ -173,7 +170,7 @@ class CARE(nn.Module):
         self.dropout = nn.Dropout(args.dropout)
         self.dist_emb = nn.Embedding(20, args.dist_emb_size)
 
-        # Mô hình BERT cơ bản không tùy chỉnh được. Chỉ nhâ Dữ liệu huấn luyện tiếng Anh
+        # Mô hình BERT cơ bản không tùy chỉnh được.
         self.tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
         self.bert = AutoModel.from_pretrained("bert-base-cased", trust_remote_code=True)
 

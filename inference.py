@@ -17,8 +17,6 @@ def map_origin_word_to_bert(words, tokenizer):
         word_len = len(bert_word)
         bep_dict[word_idx] = [current_idx, current_idx + word_len - 1]
         current_idx = current_idx + word_len
-
-
     return bep_dict
 
 
@@ -76,10 +74,7 @@ if __name__ == '__main__':
     model.to(device)
     model.eval()
 
-    if args.embed_mode == "bert_cased":
-        tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
-    else:
-        tokenizer = AutoTokenizer.from_pretrained("pretrained/scibert", do_lower_case=False)
+    tokenizer = AutoTokenizer.from_pretrained("bert-base-cased")
 
     target_sent = re.findall(r"\w+|[^\w\s]", args.sent)
     sent_bert_ids = tokenizer(target_sent, return_tensors="pt", is_split_into_words=True)["input_ids"].tolist()
@@ -87,7 +82,6 @@ if __name__ == '__main__':
     sent_bert_str = []
     for i in sent_bert_ids:
         sent_bert_str.append(tokenizer.convert_ids_to_tokens(i))
-
 
     bert_len = len(sent_bert_str)
 
@@ -158,14 +152,3 @@ if __name__ == '__main__':
             continue
 
         print("triple: {}, {}, {}".format(subj, type, obj))
-
-
-
-
-
-
-
-
-
-
-

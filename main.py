@@ -32,6 +32,7 @@ def evaluate(test_batch, rel2idx, ner2idx, args, test_or_dev):
     else:
         metric = macro(rel2idx, ner2idx)
 
+
     with torch.no_grad():
         for data in test_batch:
             steps += 1
@@ -47,6 +48,12 @@ def evaluate(test_batch, rel2idx, ner2idx, args, test_or_dev):
 
             entity_num = metric.count_ner_num(ner_pred, ner_label)
             triple_num = metric.count_num(ner_pred, ner_label, re_pred, re_label)
+
+            print("ner_pred", ner_pred.shape, ner_pred.min().item(), ner_pred.max().item())
+            print("re_pred", re_pred.shape, re_pred.min().item(), re_pred.max().item())
+            print("ner_pred shape:", ner_pred.shape)
+            print("re_pred shape:", re_pred.shape)
+            print("ner_pred sample:", ner_pred[0, 0, 0])  # 1 entity-type vector
 
             for i in range(len(entity_num)):
                 total_entity_num[i] += entity_num[i]
@@ -243,6 +250,3 @@ if __name__ == '__main__':
                     best_average_dev_f1 = average_dev_f1
                     best_ner_dev_f1, best_re_dev_f1 = dev_entity["f"], dev_triple["f"]
                     torch.save(model.state_dict(), output_dir + "/" + model_file)
-
-
-
