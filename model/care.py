@@ -22,12 +22,10 @@ class ner_unit(nn.Module):
     def forward(self, h_ner, h_share, mask):
         length, batch_size, _ = h_ner.size()
 
-
         st = h_ner.unsqueeze(1).repeat(1, length, 1, 1)
         en = h_ner.unsqueeze(0).repeat(length, 1, 1, 1)
 
         ner = torch.cat((st, en, h_share), dim=-1)
-
 
         ner = self.ln(self.hid2hid(ner))
         ner = self.elu(self.dropout(ner))
@@ -44,7 +42,6 @@ class ner_unit(nn.Module):
         mask = mask.unsqueeze(-1).repeat(1, 1, 1, len(self.ner2idx))
 
         ner = ner * mask
-
         return ner
 
 class re_unit(nn.Module):
@@ -59,9 +56,6 @@ class re_unit(nn.Module):
         self.ln = nn.LayerNorm(re_hidden_size)
 
         self.dropout = nn.Dropout(args.dropout)
-
-
-
     def forward(self, h_re, h_share, mask):
         length, batch_size, _ = h_re.size()
 
@@ -80,9 +74,7 @@ class re_unit(nn.Module):
         mask = mask_e1 * mask_e2
 
         re = re * mask
-
         return re
-
 
 class ConvAttentionLayer(nn.Module):
     def __init__(self, hid_dim, n_heads, pre_channels, channels, groups, dropout=0.1):
@@ -149,7 +141,6 @@ class ConvAttentionLayer(nn.Module):
 class ConvAttention(nn.Module):
     def __init__(self, hid_dim, n_heads, pre_channels, channels, layers, groups, dropout):
         super(ConvAttention, self).__init__()
-
         self.layers = nn.ModuleList([ConvAttentionLayer(hid_dim, n_heads, pre_channels if i == 0 else channels,
                                                         channels, groups, dropout=dropout) for i in range(layers)])
 
@@ -161,13 +152,14 @@ class ConvAttention(nn.Module):
 
 
 class CARE(nn.Module):
-    def __init__(self, args, input_size, ner2idx, rel2idx):
+    def __init__(self, args, ner2idx, rel2idx):
         super(CARE, self).__init__()
         self.args = args
 
-        self.ner = ner_unit(args, ner2idx,ner_hidden_size=args.hidden_size,share_hidden_size=args.share_hidden_size)
-        self.re = re_unit(args, rel2idx,re_hidden_size=args.hidden_size,share_hidden_size=args.share_hidden_size)
+        self.ner = ner_unit(args, ner2idx, ner_hidden_size=args.hidden_size, share_hidden_size=args.share_hidden_size)
+        self.re = re_unit(args, rel2idx, re_hidden_size=args.hidden_size, share_hidden_size=args.share_hidden_size)
         self.dropout = nn.Dropout(args.dropout)
+
         self.dist_emb = nn.Embedding(20, args.dist_emb_size)
 
         # Mô hình BERT cơ bản không tùy chỉnh được.
@@ -181,12 +173,11 @@ class CARE(nn.Module):
                                   padding='longest',
                                   is_split_into_words=True).to(device)
         x = self.bert(**x)[0]
-
         if self.training:
             x = self.dropout(x)
-        length = x.size(1)
-        dist = self.dist_emb(dist).permute(0,3,1,2)
 
+        length = x.size(1)
+        dist = self.dist_emb(dist).permute(0,3,1,2) #Biểu diễn khoảng cách token i và j,
 
         padding_mask = mask.unsqueeze(-1)
         mask1 = padding_mask.unsqueeze(1).repeat(1, length, 1, 1)
@@ -195,11 +186,13 @@ class CARE(nn.Module):
 
         padding_mask = padding_mask.permute(2,3,0,1)
 
+        # học bên trong ConvAttention
         h_ner, h_re, h_share = self.conv_attention(x, x, dist, padding_mask)
+
         h_ner = h_ner.permute(1,0,2)
         h_re = h_re.permute(1,0,2)
         h_share = h_share.permute(1,2,0,3)
+
         ner_score = self.ner(h_ner, h_share, mask)
         re_core = self.re(h_re, h_share, mask)
         return ner_score, re_core
-

@@ -93,11 +93,11 @@ def nyt_and_webnlg_preprocess(data, tokenizer):
             obj = text.index(trip[2])
             rel = trip[1]
             if subj not in ner_labels:
-                ner_labels +=[subj,subj,"None"]
+                ner_labels += [subj, subj, "None"]
             if obj not in ner_labels:
-                ner_labels +=[obj,obj,"None"]
+                ner_labels += [obj, obj, "None"]
 
-            rc_labels+=[subj,obj,rel]
+            rc_labels += [subj, obj, rel]
 
         processed += [(text,ner_labels,rc_labels)]
     res = []

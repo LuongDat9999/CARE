@@ -1,0 +1,121 @@
+['/Users/luongdat/Desktop/Pycharm/Care/main.py']
+Namespace(data='WEBNLG', epoch=10, hidden_size=768, share_hidden_size=128, dist_emb_size=20, co_attention_layers=3, batch_size=8, eval_batch_size=8, do_train=True, do_eval=True, eval_metric='micro', lr=0.0001, weight_decay=0, linear_warmup_rate=0.0, seed=0, dropout=0.1, dropconnect=0.1, steps=50, output_file='test', clip=0.25, coslr=False)
+------Training------
+Epoch: 0, step: 50 / 628, loss = 5109.5257
+Epoch: 0, step: 100 / 628, loss = 2672.4045
+Epoch: 0, step: 150 / 628, loss = 1786.0862
+Epoch: 0, step: 200 / 628, loss = 1341.4019
+Epoch: 0, step: 250 / 628, loss = 1074.5905
+Epoch: 0, step: 300 / 628, loss = 896.5858
+Epoch: 0, step: 350 / 628, loss = 769.3164
+Epoch: 0, step: 400 / 628, loss = 673.8904
+Epoch: 0, step: 450 / 628, loss = 599.6382
+Epoch: 0, step: 500 / 628, loss = 540.2248
+Epoch: 0, step: 550 / 628, loss = 491.6059
+Epoch: 0, step: 600 / 628, loss = 451.1205
+------ Training Set Results ------
+loss : 431.2245
+------ Testing ------
+------ dev Results ------
+loss : 6.6406
+entity: p=0.0000, r=0.0000, f=0.0000
+triple: p=0.0000, r=0.0000, f=0.0000
+------ test Results ------
+loss : 6.5039
+entity: p=0.0000, r=0.0000, f=0.0000
+triple: p=0.0000, r=0.0000, f=0.0000
+Epoch: 1, step: 50 / 628, loss = 5.3970
+Epoch: 1, step: 100 / 628, loss = 5.4536
+Epoch: 1, step: 150 / 628, loss = 5.5785
+Epoch: 1, step: 200 / 628, loss = 5.5117
+Epoch: 1, step: 250 / 628, loss = 5.5030
+Epoch: 1, step: 300 / 628, loss = 5.4520
+Epoch: 1, step: 350 / 628, loss = 5.4327
+Epoch: 1, step: 400 / 628, loss = 5.4314
+Epoch: 1, step: 450 / 628, loss = 5.4099
+Epoch: 1, step: 500 / 628, loss = 5.3881
+Epoch: 1, step: 550 / 628, loss = 5.3880
+Epoch: 1, step: 600 / 628, loss = 5.3816
+------ Training Set Results ------
+loss : 5.3856
+------ Testing ------
+------ dev Results ------
+loss : 6.3798
+entity: p=0.0000, r=0.0000, f=0.0000
+triple: p=0.0000, r=0.0000, f=0.0000
+------ test Results ------
+loss : 6.3079
+entity: p=0.0000, r=0.0000, f=0.0000
+triple: p=0.0000, r=0.0000, f=0.0000
+Epoch: 2, step: 50 / 628, loss = 5.5493
+Epoch: 2, step: 100 / 628, loss = 5.4089
+Epoch: 2, step: 150 / 628, loss = 5.3792
+Epoch: 2, step: 200 / 628, loss = 5.2928
+Epoch: 2, step: 250 / 628, loss = 5.2905
+Epoch: 2, step: 300 / 628, loss = 5.2760
+Epoch: 2, step: 350 / 628, loss = 5.2601
+Epoch: 2, step: 400 / 628, loss = 5.2577
+Epoch: 2, step: 450 / 628, loss = 5.2660
+Epoch: 2, step: 500 / 628, loss = 5.2614
+Epoch: 2, step: 550 / 628, loss = 5.2862
+Epoch: 2, step: 600 / 628, loss = 5.2705
+------ Training Set Results ------
+loss : 5.2678
+------ Testing ------
+------ dev Results ------
+loss : 6.3498
+entity: p=0.0000, r=0.0000, f=0.0000
+triple: p=0.0000, r=0.0000, f=0.0000
+------ test Results ------
+loss : 6.2665
+entity: p=0.0000, r=0.0000, f=0.0000
+triple: p=0.0000, r=0.0000, f=0.0000
+Epoch: 3, step: 50 / 628, loss = 5.2068
+Epoch: 3, step: 100 / 628, loss = 5.2514
+Epoch: 3, step: 150 / 628, loss = 5.2966
+Epoch: 3, step: 200 / 628, loss = 5.2649
+Epoch: 3, step: 250 / 628, loss = 5.2333
+Epoch: 3, step: 300 / 628, loss = 5.2166
+Epoch: 3, step: 350 / 628, loss = 5.1959
+Epoch: 3, step: 400 / 628, loss = 5.1870
+Epoch: 3, step: 450 / 628, loss = 5.1845
+Epoch: 3, step: 500 / 628, loss = 5.2018
+Epoch: 3, step: 550 / 628, loss = 5.2223
+Epoch: 3, step: 600 / 628, loss = 5.2209
+------ Training Set Results ------
+loss : 5.2102
+------ Testing ------
+------ dev Results ------
+loss : 6.2108
+entity: p=0.0000, r=0.0000, f=0.0000
+triple: p=0.0000, r=0.0000, f=0.0000
+------ test Results ------
+loss : 6.1506
+entity: p=0.0000, r=0.0000, f=0.0000
+triple: p=0.0000, r=0.0000, f=0.0000
+Epoch: 4, step: 50 / 628, loss = 5.1630
+Epoch: 4, step: 100 / 628, loss = 5.1472
+Epoch: 4, step: 150 / 628, loss = 5.1137
+Epoch: 4, step: 200 / 628, loss = 5.1126
+Epoch: 4, step: 250 / 628, loss = 5.1293
+Epoch: 4, step: 300 / 628, loss = 5.1389
+Epoch: 4, step: 350 / 628, loss = 5.1150
+Epoch: 4, step: 400 / 628, loss = 5.1357
+Epoch: 4, step: 450 / 628, loss = 5.1343
+Epoch: 4, step: 500 / 628, loss = 5.1603
+Epoch: 4, step: 550 / 628, loss = 5.1803
+Epoch: 4, step: 600 / 628, loss = 5.1632
+------ Training Set Results ------
+loss : 5.1642
+------ Testing ------
+------ dev Results ------
+loss : 6.2155
+entity: p=0.0000, r=0.0000, f=0.0000
+triple: p=0.0000, r=0.0000, f=0.0000
+------ test Results ------
+loss : 6.1439
+entity: p=0.0000, r=0.0000, f=0.0000
+triple: p=0.0000, r=0.0000, f=0.0000
+Epoch: 5, step: 50 / 628, loss = 5.1824
+Epoch: 5, step: 100 / 628, loss = 5.2142
+Epoch: 5, step: 150 / 628, loss = 5.1615

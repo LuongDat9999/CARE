@@ -170,8 +170,8 @@ if __name__ == '__main__':
     with open("data/" + args.data + "/rel2idx.json", "r") as f:
         rel2idx = json.load(f)
 
-    input_size = 768
-    model = CARE(args, input_size, ner2idx, rel2idx)
+    #input_size = 768
+    model = CARE(args, ner2idx, rel2idx)
 
     model.to(device)
 
